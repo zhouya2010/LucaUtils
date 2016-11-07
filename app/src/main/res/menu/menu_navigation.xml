@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/search_btn"
+        android:icon="@drawable/ic_map_blue_a400_24dp"
+        android:title="日报" />
+
+    <item android:id="@+id/list_btn"
+        android:icon="@drawable/ic_search_blue_a400_24dp"
+        android:title="主题" />
+
+    <item android:id="@+id/my_btn"
+        android:icon="@drawable/ic_dashboard_blue_a400_24dp"
+        android:title="专栏" />
+
+    <item android:id="@+id/set_btn"
+        android:icon="@drawable/ic_account_box_blue_a400_24dp"
+        android:title="热门" />
+
+</menu>
