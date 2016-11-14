@@ -12,6 +12,9 @@ import com.example.zy.lucautils.app.App;
 import com.example.zy.lucautils.base.SimpleFragment;
 import com.example.zy.lucautils.model.bean.DailyListBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
@@ -25,6 +28,10 @@ import rx.schedulers.Schedulers;
 public class DailyFragment extends SimpleFragment {
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
+
+    String currentDate;
+//    DailyAdapter mAdapter;
+    List<DailyListBean.StoriesEntity> mList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
