@@ -41,6 +41,9 @@ public class RetrofitHelper {
     }
 
     private static void initOkHttp() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             // https://drakeet.me/retrofit-2-0-okhttp-3-0-config
@@ -93,6 +96,7 @@ public class RetrofitHelper {
         //设置缓存
         builder.addNetworkInterceptor(cacheInterceptor);
         builder.addInterceptor(cacheInterceptor);
+        builder.addInterceptor(logging);
         builder.cache(cache);
         //设置超时
         builder.connectTimeout(10, TimeUnit.SECONDS);
