@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import com.example.zy.lucautils.di.component.AppComponent;
 import com.example.zy.lucautils.di.component.DaggerAppComponent;
 import com.example.zy.lucautils.di.module.AppModule;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,6 +43,14 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        //初始化内存泄漏检测
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
 
         //初始化屏幕宽高
         getScreenSize();

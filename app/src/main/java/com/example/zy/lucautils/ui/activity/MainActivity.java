@@ -4,11 +4,12 @@ package com.example.zy.lucautils.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Switch;
 
 import com.example.zy.lucautils.R;
 import com.example.zy.lucautils.app.Constants;
@@ -32,6 +33,8 @@ public class MainActivity extends SimpleActivity {
     BottomNavigationView navigationBar;
     @BindView(R.id.fl_main_content)
     FrameLayout flMainContent;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     DailyFragment daily;
     HotFragment hot;
@@ -40,6 +43,7 @@ public class MainActivity extends SimpleActivity {
 
     List<Fragment> fragments = new ArrayList<Fragment>();
 
+    private BottomSheetBehavior mBottomSheetBehavior;
 
     private int hideFragment = Constants.TYPE_DAILY;
     private int showFragment = Constants.TYPE_DAILY;
@@ -52,12 +56,14 @@ public class MainActivity extends SimpleActivity {
     @Override
     protected void initEventAndData() {
 
+        setToolBar(toolbar, "LucaUtils");
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         daily = new DailyFragment();
         hot = new HotFragment();
         section = new SectionFragment();
         theme = new ThemeFragment();
 
-        loadMultipleRootFragment(R.id.fl_main_content, 0, daily,hot,section,theme);
+        loadMultipleRootFragment(R.id.fl_main_content, 0, daily, hot, section, theme);
 
         navigationBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -87,7 +93,6 @@ public class MainActivity extends SimpleActivity {
                 return false;
             }
         });
-
     }
 
     private SupportFragment getTargetFragment(int item) {
@@ -104,4 +109,5 @@ public class MainActivity extends SimpleActivity {
 
         return daily;
     }
+
 }
