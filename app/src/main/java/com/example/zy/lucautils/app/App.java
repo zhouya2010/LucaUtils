@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.antfortune.freeline.FreelineCore;
 import com.example.zy.lucautils.di.component.AppComponent;
 import com.example.zy.lucautils.di.component.DaggerAppComponent;
 import com.example.zy.lucautils.di.module.AppModule;
@@ -54,6 +55,8 @@ public class App extends Application {
 
         //初始化屏幕宽高
         getScreenSize();
+
+        FreelineCore.init(this);
     }
 
     public void addActivity(Activity act) {
