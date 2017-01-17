@@ -2,6 +2,7 @@ package com.example.zy.lucautils.ui.fragmen;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,7 +30,7 @@ import rx.schedulers.Schedulers;
  * Created by dell on 2016/11/7.
  */
 
-public class DailyFragment extends SimpleFragment {
+public class DailyFragment extends SimpleFragment implements SwipeRefreshLayout.OnRefreshListener{
 //    @BindView(R.id.swipe_refresh)
 //    SwipeRefreshLayout swipeRefresh;
 
@@ -52,10 +53,26 @@ public class DailyFragment extends SimpleFragment {
 
     @Override
     protected void initEventAndData() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("日报");
+
         mAdapter = new DailyAdapter(mContext, mList);
 //
         rvDailyList.setLayoutManager(new LinearLayoutManager(mContext));
 //        rvDailyList.setAdapter(mAdapter);
+        swipeRefresh.setOnRefreshListener(this);
+
+        getData();
+    }
+
+    @Override
+    public void onRefresh() {
+        Log.d("DailyFragment", "onRefresh");
+        swipeRefresh.setRefreshing(true);
+        getData();
+    }
+
+    void getData(){
+        swipeRefresh.setRefreshing(true);
 
         App.getAppComponent().retrofitHelper().fetchDailyListInfo()
                 .subscribeOn(Schedulers.io())
@@ -63,6 +80,7 @@ public class DailyFragment extends SimpleFragment {
                 .subscribe(new Subscriber<DailyListBean>() {
                     @Override
                     public void onCompleted() {
+                        swipeRefresh.setRefreshing(false);
 
                     }
 
@@ -80,4 +98,5 @@ public class DailyFragment extends SimpleFragment {
                     }
                 });
     }
+
 }

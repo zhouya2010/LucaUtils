@@ -1,11 +1,13 @@
 package com.example.zy.lucautils.ui.activity;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.FrameLayout;
 import com.example.zy.lucautils.R;
 import com.example.zy.lucautils.app.Constants;
 import com.example.zy.lucautils.base.SimpleActivity;
+import com.example.zy.lucautils.di.component.AppComponent;
 import com.example.zy.lucautils.ui.fragmen.DailyFragment;
 import com.example.zy.lucautils.ui.fragmen.HotFragment;
 import com.example.zy.lucautils.ui.fragmen.SectionFragment;
@@ -55,8 +58,7 @@ public class MainActivity extends SimpleActivity {
 
     @Override
     protected void initEventAndData() {
-
-        setToolBar(toolbar, "LucaUtils");
+        setToolBar(toolbar, "日报");
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         daily = new DailyFragment();
         hot = new HotFragment();

@@ -1,5 +1,7 @@
 package com.example.zy.lucautils.ui.fragmen;
 
+import android.support.v7.app.AppCompatActivity;
+
 import com.example.zy.lucautils.R;
 import com.example.zy.lucautils.base.SimpleFragment;
 
@@ -15,6 +17,7 @@ public class ThemeFragment extends SimpleFragment {
 
     @Override
     protected void initEventAndData() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("主题");
 
     }
 }
